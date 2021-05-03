@@ -5,6 +5,8 @@ vim.cmd("set tabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set number")
 
+vim.cmd("nnoremap <leader>ff <cmd>Telescope find_files<cr>")
+
 require("plugins/main")
 
 require("plugins/nvim-web-devicons/main")

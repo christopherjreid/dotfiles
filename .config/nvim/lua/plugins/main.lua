@@ -22,6 +22,13 @@ return require('packer').startup(
 
       use("neovim/nvim-lspconfig")
       use("nvim-lua/completion-nvim")
+
+      use({
+          "nvim-telescope/telescope.nvim", 
+          requires = {{"nvim-lua/popup.nvim"},
+            {"nvim-lua/plenary.nvim"},
+            {"nvim-telescope/telescope-fzy-native.nvim"}}
+        })
   end
 )
 
