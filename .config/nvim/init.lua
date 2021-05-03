@@ -5,6 +5,9 @@ vim.cmd("set tabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set number")
 
+vim.cmd("nnoremap <SPACE> <Nop>")
+vim.cmd("let mapleader=\" \"")
+
 vim.cmd("nnoremap <leader>ff <cmd>Telescope find_files<cr>")
 
 require("plugins/main")
