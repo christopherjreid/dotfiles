@@ -1,4 +1,5 @@
 local nvim_lsp_config = require("lspconfig")
+local completion = require('completion')
 
 local clangd_on_attach = function(client, bufnr)
     buf_set_keymap(bufnr, 'n', 'H', "<Cmd>lua require'lspconfig'.clangd.switch_source_header(0)<CR>", opts)
@@ -11,7 +12,9 @@ nvim_lsp_config.clangd.setup {
 }
 
 -- Rust config
-nvim_lsp_config.rust_analyzer.setup({})
+nvim_lsp_config.rust_analyzer.setup({
+  on_attach=completion.on_attach
+})
 
 -- Enable diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(

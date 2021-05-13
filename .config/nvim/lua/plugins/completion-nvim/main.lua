@@ -1,1 +1,1 @@
-require("completion-nvim")
+require("completion")

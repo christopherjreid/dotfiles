@@ -16,5 +16,5 @@ require("plugins/nvim-web-devicons/main")
 require("plugins/nvim-tree/main")
 
 require("plugins/nvim-lspconfig/main")
---require("plugins/completion-nvim/main")
+require("plugins/completion-nvim/main")
 
