@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
+set -x
 
 APT_DEPS="clangd-9"
-
-symlink_things() {
-  ln -s 
-}
-
 
 is_neovim_installed() {
   return command -v nvim &> /dev/null
@@ -13,6 +9,10 @@ is_neovim_installed() {
 
 is_nerdfonts_installed() {
   return $([ -d "$HOME"/.fonts ] && find $HOME/.fonts -name "JetBrains*Nerd Font*.ttf" | grep .)
+}
+
+is_rust_analyzer_installed() {
+  return command -v rust-analyzer &> /dev/null
 }
 
 install_neovim() {
@@ -28,13 +28,19 @@ install_nerdfonts() {
   fi
 }
 
+install_rust_analyzer() {
+    wget https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -O ~/.local/bin/rust-analyzer
+    chmod +x ~/.local/bin/rust-analyzer
+}
+
 
 install() {
   sudo apt-get update && sudo apt-get install -y --no-install-recommends \
     $APT_DEPS
 
-  if [[ ! is_nerdfonts_installed -eq 1 ]]; then  install_nerdfonts; fi
-  if [[ ! is_neovim_installed -eq 1 ]]; then  install_neovim; fi
+  if [[ ! is_nerdfonts_installed -eq 0 ]]; then  install_nerdfonts; fi
+  if [[ ! is_neovim_installed -eq 0 ]]; then  install_neovim; fi
+  if [[ is_rust_analyzer_installed -eq 0 ]]; then  install_rust_analyzer; fi
 }
 
 install
