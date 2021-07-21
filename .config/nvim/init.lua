@@ -10,7 +10,7 @@ vim.cmd("let mapleader=\" \"")
 
 vim.cmd("nnoremap <leader>ff <cmd>Telescope find_files<cr>")
 
-vim.cmd("set completeopt-=preview")
+vim.cmd("set completeopt=menuone,noinsert,noselect")
 
 require("plugins/main")
 
