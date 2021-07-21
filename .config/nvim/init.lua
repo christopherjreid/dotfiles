@@ -10,6 +10,8 @@ vim.cmd("let mapleader=\" \"")
 
 vim.cmd("nnoremap <leader>ff <cmd>Telescope find_files<cr>")
 
+vim.cmd("set completeopt-=preview")
+
 require("plugins/main")
 
 require("plugins/nvim-web-devicons/main")

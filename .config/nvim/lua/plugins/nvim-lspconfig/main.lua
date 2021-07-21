@@ -7,6 +7,7 @@ end
 
 -- C++ config
 nvim_lsp_config.clangd.setup {
+    on_attach = require("completion").on_attach,
     cmd = {"clangd", "--background-index", "--clang-tidy"},
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 }
@@ -21,6 +22,5 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = true,
     signs = true,
-    update_in_insert = true,
   }
 )
