@@ -8,9 +8,13 @@ vim.cmd("set number")
 vim.cmd("nnoremap <SPACE> <Nop>")
 vim.cmd("let mapleader=\" \"")
 
-vim.cmd("nnoremap <leader>ff <cmd>Telescope find_files<cr>")
+vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", {})
+vim.api.nvim_set_keymap("n", "<S-Tab>", "<C-O>", {})
 
 vim.cmd("set completeopt=menuone,noinsert,noselect")
+
+vim.cmd("colorscheme slate")
+vim.cmd("set termguicolors")
 
 require("plugins/main")
 
