@@ -13,6 +13,7 @@ return require('packer').startup(
   function(use)
       -- Let packer manages packer
       use("wbthomason/packer.nvim")
+      use("doums/darcula")
 
 
       use("kyazdani42/nvim-tree.lua")

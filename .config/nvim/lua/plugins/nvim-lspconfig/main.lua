@@ -10,6 +10,14 @@ local clangd_on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", {})
 end
 
+local rust_analyzer_on_attach = function(client, bufnr)
+    require("completion").on_attach({})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', "<Cmd>lua vim.lsp.buf.declaration()<CR>", {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', "<Cmd>lua vim.lsp.buf.definition()<CR>", {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'sr', "<Cmd>lua vim.lsp.buf.references()<CR>", {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", {})
+end
+
 -- C++ config
 nvim_lsp_config.clangd.setup {
     on_attach = clangd_on_attach,
@@ -19,7 +27,14 @@ nvim_lsp_config.clangd.setup {
 
 -- Rust config
 nvim_lsp_config.rust_analyzer.setup({
-  on_attach=completion.on_attach
+  on_attach=rust_analyzer_on_attach,
+  settings = {
+    ["rust_analyzer"] = {
+        procMacro = {
+            enable = false
+        }
+    }
+  }
 })
 
 -- Enable diagnostics

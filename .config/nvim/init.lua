@@ -13,7 +13,7 @@ vim.api.nvim_set_keymap("n", "<S-Tab>", "<C-O>", {})
 
 vim.cmd("set completeopt=menuone,noinsert,noselect")
 
-vim.cmd("colorscheme slate")
+vim.cmd("colorscheme darcula")
 vim.cmd("set termguicolors")
 
 require("plugins/main")
