@@ -1,27 +1,27 @@
 local nvim_lsp_config = require("lspconfig")
 local completion = require('completion')
 
-local clangd_on_attach = function(client, bufnr)
+local common_on_attach = function(client, bufnr)
     require("completion").on_attach({})
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'H', "<Cmd>lua require'lspconfig'.clangd.switch_source_header(0)<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', "<Cmd>lua vim.lsp.buf.declaration()<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', "<Cmd>lua vim.lsp.buf.definition()<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'sr', "<Cmd>lua vim.lsp.buf.references()<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", {})
 end
 
+local clangd_on_attach = function(client, bufnr)
+    common_on_attach(client, bufnr)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'H', "<Cmd>lua require'lspconfig'.clangd.switch_source_header(0)<CR>", {})
+end
+
 local rust_analyzer_on_attach = function(client, bufnr)
-    require("completion").on_attach({})
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', "<Cmd>lua vim.lsp.buf.declaration()<CR>", {})
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', "<Cmd>lua vim.lsp.buf.definition()<CR>", {})
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'sr', "<Cmd>lua vim.lsp.buf.references()<CR>", {})
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", {})
+    common_on_attach(client, bufnr)
 end
 
 -- C++ config
 nvim_lsp_config.clangd.setup {
     on_attach = clangd_on_attach,
-    cmd = {"clangd", "--background-index", "--clang-tidy"},
+    cmd = {"clangd-9", "--background-index", "--clang-tidy", "--compile-commands-dir=./build/"},
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 }
 
@@ -35,6 +35,10 @@ nvim_lsp_config.rust_analyzer.setup({
         }
     }
   }
+})
+
+nvim_lsp_config.jedi_language_server.setup({
+  on_attach=common_on_attach 
 })
 
 -- Enable diagnostics
