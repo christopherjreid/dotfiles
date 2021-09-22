@@ -30,6 +30,7 @@ return require('packer').startup(
             {"nvim-lua/plenary.nvim"},
             {"nvim-telescope/telescope-fzy-native.nvim"}}
         })
+    use("tpope/vim-fugitive")
   end
 )
 
