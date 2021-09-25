@@ -21,14 +21,13 @@ install_neovim() {
 }
 
 install_nerdfonts() {
-  if [[ $? -eq 1 ]]; then
     mkdir -p $HOME/.fonts
     wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip" -O /tmp/JetBrainsMono.zip
     unzip /tmp/JetBrainsMono.zip -d $HOME/.fonts
-  fi
 }
 
 install_rust_analyzer() {
+    mkdir -p ~/.local/bin
     wget https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -O ~/.local/bin/rust-analyzer
     chmod +x ~/.local/bin/rust-analyzer
 }
@@ -38,9 +37,9 @@ install() {
   sudo apt-get update && sudo apt-get install -y --no-install-recommends \
     $APT_DEPS
 
-  if [[ ! is_nerdfonts_installed -eq 0 ]]; then  install_nerdfonts; fi
-  if [[ ! is_neovim_installed -eq 0 ]]; then  install_neovim; fi
-  if [[ is_rust_analyzer_installed -eq 0 ]]; then  install_rust_analyzer; fi
+  if [[ is_nerdfonts_installed -eq 1 ]]; then  install_nerdfonts; fi
+  if [[ is_neovim_installed -eq 1 ]]; then  install_neovim; fi
+  if [[ is_rust_analyzer_installed -eq 1 ]]; then  install_rust_analyzer; fi
 }
 
 install

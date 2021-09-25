@@ -22,7 +22,22 @@ end
 nvim_lsp_config.clangd.setup {
     on_attach = clangd_on_attach,
     cmd = {"clangd-9", "--background-index", "--clang-tidy", "--compile-commands-dir=./build/"},
+--    cmd = {"docker", "exec", "-i", "-w", "/src", "nvim-devcontainer", "clangd", "--background-index", "--clang-tidy", "--path-mappings", "/home/pip/Projects/morpheus/tank=/src"},
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+}
+
+-- Python config
+nvim_lsp_config.jedi_language_server.setup {
+    on_attach = common_on_attach,
+    cmd = { "jedi-language-server" },
+    filetypes = { "python" },
+}
+
+-- Dart config
+nvim_lsp_config.dartls.setup {
+    on_attach = common_on_attach,
+    cmd = { "dart", "--lsp" },
+    filetypes = { "dart" },
 }
 
 -- Rust config

@@ -21,4 +21,3 @@ require("plugins/nvim-tree/main")
 
 require("plugins/nvim-lspconfig/main")
 require("plugins/completion-nvim/main")
-
