@@ -34,5 +34,5 @@ require("plugins/nvim-tree/main")
 
 require("plugins/nvim-lspconfig/main")
 require("plugins/completion-nvim/main")
-require("plugins/vim-fugitive/main")
+-- require("plugins/vim-fugitive/main")
 

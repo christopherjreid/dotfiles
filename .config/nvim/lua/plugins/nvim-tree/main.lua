@@ -4,18 +4,12 @@ vim.cmd [[packadd nvim-tree.lua]]
 
 vim.o.termguicolors = true
 
-vim.g.nvim_tree_side = "left"
-vim.g.nvim_tree_width = 25
 vim.g.nvim_tree_ignore = {".git", "node_modules", ".cache"}
-vim.g.nvim_tree_auto_open = 1
-vim.g.nvim_tree_auto_close = 0
 vim.g.nvim_tree_quit_on_open = 0
-vim.g.nvim_tree_follow = 1
 vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_hide_dotfiles = 1
 vim.g.nvim_tree_git_hl = 1
 vim.g.nvim_tree_root_folder_modifier = ":~"
-vim.g.nvim_tree_tab_open = 1
 vim.g.nvim_tree_allow_resize = 1
 
 vim.g.nvim_tree_icons = {
@@ -51,30 +45,51 @@ vim.api.nvim_set_keymap(
     }
 )
 
-vim.g.nvim_tree_bindings = {
-    ["<CR>"] = get_lua_cb("edit"),
-    ["o"] = get_lua_cb("edit"),
-    ["<2-LeftMouse>"] = get_lua_cb("edit"),
-    ["<2-RightMouse>"] = get_lua_cb("cd"),
-    ["<C-]>"] = get_lua_cb("cd"),
-    ["<C-v>"] = get_lua_cb("vsplit"),
-    ["<C-x>"] = get_lua_cb("split"),
-    ["<C-t>"] = get_lua_cb("tabnew"),
-    ["<BS>"] = get_lua_cb("close_node"),
-    ["<S-CR>"] = get_lua_cb("close_node"),
-    ["<Tab>"] = get_lua_cb("preview"),
-    ["I"] = get_lua_cb("toggle_ignored"),
-    ["H"] = get_lua_cb("toggle_dotfiles"),
-    ["R"] = get_lua_cb("refresh"),
-    ["a"] = get_lua_cb("create"),
-    ["d"] = get_lua_cb("remove"),
-    ["r"] = get_lua_cb("rename"),
-    ["<C-r>"] = get_lua_cb("full_rename"),
-    ["x"] = get_lua_cb("cut"),
-    ["c"] = get_lua_cb("copy"),
-    ["p"] = get_lua_cb("paste"),
-    ["[c"] = get_lua_cb("prev_git_item"),
-    ["]c"] = get_lua_cb("next_git_item"),
-    ["-"] = get_lua_cb("dir_up"),
-    ["q"] = get_lua_cb("close")
-}
+require("nvim-tree").setup({
+    auto_open = true,
+    auto_close = false,
+    open_on_setup = true,
+    open_on_tab = false,
+    update_to_buf_dir = true,
+
+    system_open = {
+        cmd = nil,
+        args = {}
+    },
+
+    view = {
+        auto_resize = true,
+        width = 30,
+        side = 'left',
+        mappings = {
+            custom_only = false,
+            list = {
+                { key = "<CR>", cb = get_lua_cb("edit") },
+                { key = "o", cb = get_lua_cb("edit") },
+                { key = "<2-LeftMouse>", cb = get_lua_cb("edit") },
+                { key = "<2-RightMouse>", cb = get_lua_cb("cd") },
+                { key = "<C-]>", cb = get_lua_cb("cd") },
+                { key = "<C-v>", cb = get_lua_cb("vsplit") },
+                { key = "<C-x>", cb = get_lua_cb("split") },
+                { key = "<C-t>", cb = get_lua_cb("tabnew") },
+                { key = "<BS>", cb = get_lua_cb("close_node") },
+                { key = "<S-CR>", cb = get_lua_cb("close_node") },
+                { key = "<Tab>", cb = get_lua_cb("preview") },
+                { key = "I", cb = get_lua_cb("toggle_ignored") },
+                { key = "H", cb = get_lua_cb("toggle_dotfiles") },
+                { key = "R", cb = get_lua_cb("refresh") },
+                { key = "a", cb = get_lua_cb("create") },
+                { key = "d", cb = get_lua_cb("remove") },
+                { key = "r", cb = get_lua_cb("rename") },
+                { key = "<C-r>", cb = get_lua_cb("full_rename") },
+                { key = "x", cb = get_lua_cb("cut") },
+                { key = "c", cb = get_lua_cb("copy") },
+                { key = "p", cb = get_lua_cb("paste") },
+                { key = "{c", cb = get_lua_cb("prev_git_item") },
+                { key = "]c", cb = get_lua_cb("next_git_item") },
+                { key = "-", cb = get_lua_cb("dir_up") },
+                { key = "q", cb = get_lua_cb("close") }
+            }
+        }
+    }
+})
