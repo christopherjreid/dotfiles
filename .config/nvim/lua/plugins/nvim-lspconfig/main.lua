@@ -1,8 +1,6 @@
 local nvim_lsp_config = require("lspconfig")
-local completion = require('completion')
 
 local common_on_attach = function(client, bufnr)
-    require("completion").on_attach({})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', "<Cmd>lua vim.lsp.buf.declaration()<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', "<Cmd>lua vim.lsp.buf.definition()<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'sr', "<Cmd>lua vim.lsp.buf.references()<CR>", {})
@@ -28,6 +26,7 @@ end
 -- C++ config
 nvim_lsp_config.clangd.setup {
     on_attach = clangd_on_attach,
+    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
     cmd = {"clangd-9", "--background-index", "--clang-tidy", "--compile-commands-dir=./build/"},
 --    cmd = {"docker", "exec", "-i", "-w", "/src", "nvim-devcontainer", "clangd", "--background-index", "--clang-tidy", "--path-mappings", "/home/pip/Projects/morpheus/tank=/src"},
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
@@ -49,7 +48,11 @@ nvim_lsp_config.dartls.setup {
 
 -- Rust config
 nvim_lsp_config.rust_analyzer.setup({
-  on_attach=rust_analyzer_on_attach,
+  on_attach = rust_analyzer_on_attach,
+  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  cmd = { "rust-analyzer", "-v", "-v", "-v", "--log-file", "rust-logs.log", "--no-log-buffering"},
+  filetypes = { "rust" },
+  root_dir = nvim_lsp_config.util.root_pattern("Cargo.toml"),
   settings = {
     ["rust_analyzer"] = {
         procMacro = {

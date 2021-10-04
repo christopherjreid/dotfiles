@@ -22,7 +22,9 @@ return require('packer').startup(
       use("nvim-treesitter/nvim-treesitter")
 
       use("neovim/nvim-lspconfig")
-      use("nvim-lua/completion-nvim")
+      use("hrsh7th/nvim-cmp")
+      use("hrsh7th/cmp-nvim-lsp")
+      use("hrsh7th/cmp-buffer")
 
       use({
           "nvim-telescope/telescope.nvim", 
