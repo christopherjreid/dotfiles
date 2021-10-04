@@ -50,7 +50,7 @@ require("nvim-tree").setup({
     auto_close = false,
     open_on_setup = true,
     open_on_tab = false,
-    update_to_buf_dir = true,
+    update_to_buf_dir = false,
 
     system_open = {
         cmd = nil,

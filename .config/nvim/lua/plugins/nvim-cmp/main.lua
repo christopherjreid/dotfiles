@@ -5,4 +5,3 @@ require("cmp").setup({
     }
 
 })
-
