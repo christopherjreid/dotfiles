@@ -28,9 +28,11 @@ return require('packer').startup(
 
       use({
           "nvim-telescope/telescope.nvim", 
-          requires = {{"nvim-lua/popup.nvim"},
+          requires = {
+            {"nvim-lua/popup.nvim"},
             {"nvim-lua/plenary.nvim"},
-            {"nvim-telescope/telescope-fzy-native.nvim"}}
+            {"nvim-telescope/telescope-fzy-native.nvim"}
+          }
         })
     use("tpope/vim-fugitive")
   end
