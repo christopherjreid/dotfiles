@@ -9,6 +9,9 @@ vim.cmd("let mapleader=\" \"")
 vim.api.nvim_set_keymap('n', '<leader>fi',
   [[<Cmd>lua require'telescope.builtin'.git_files{find_command = {'find', '-L', '-type', 'f'}, follow = true}<CR>]],
   {})
+vim.api.nvim_set_keymap('n', '<leader>gs',
+  [[<Cmd>lua require'telescope.builtin'.git_status()<CR>]],
+  {})
 vim.api.nvim_set_keymap('n', '<leader>fn',
   [[<Cmd>lua require'telescope.builtin'.find_files{find_command = {'find', '-L', '-type', 'f'}, follow = true}<CR>]],
   {})
