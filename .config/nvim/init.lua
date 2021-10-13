@@ -25,7 +25,7 @@ vim.api.nvim_set_keymap("n", "c-n", ":cnext", {})
 vim.api.nvim_set_keymap("n", "c-p", ":cprev", {})
 vim.cmd("nnoremap <SPACE> <Nop>")
 
-vim.cmd("set completeopt=menuone,noinsert,noselect")
+--vim.cmd("set completeopt=menuone,noinsert,noselect")
 
 vim.cmd("colorscheme darcula")
 vim.cmd("set termguicolors")

@@ -3,10 +3,9 @@ local cmp = require("cmp")
 cmp.setup({
     completion = {
         autocomplete = {
-            cmp.TriggerEvent.TextChanged,
-            cmp.TriggerEvent.InsertEnter
+            cmp.TriggerEvent.TextChanged
         },
-        completeopt = "menu,menuone,noinsert,longest"
+        completeopt = "menu,menuone,noinsert"
     },
     sources = {
         { name = "nvim_lsp", priority = 100 },
