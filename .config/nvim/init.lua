@@ -18,7 +18,6 @@ vim.api.nvim_set_keymap('n', '<leader>fn',
 vim.api.nvim_set_keymap('n', '<leader>gr',
   [[<Cmd>lua require'telescope.builtin'.live_grep{}<CR>]],
   {})
-vim.api.nvim_set_keymap("n", "<leader>fo", "<cmd>%!clang-format<cr>", {})
 
 vim.api.nvim_set_keymap("n", "<S-Tab>", "<C-O>", {})
 vim.api.nvim_set_keymap("n", "c-n", ":cnext", {})

@@ -3,10 +3,12 @@ local nvim_lsp_config = require("lspconfig")
 vim.lsp.set_log_level("debug")
 
 local common_on_attach = function(client, bufnr)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', "<Cmd>lua vim.lsp.buf.declaration()<CR>", {})
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', "<Cmd>lua vim.lsp.buf.definition()<CR>", {})
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'sr', "<Cmd>lua vim.lsp.buf.references()<CR>", {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', "<Cmd>lua vim.lsp.buf.declaration()<CR>", {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>d', "<Cmd>lua vim.lsp.buf.definition()<CR>", {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>r', "<Cmd>lua vim.lsp.buf.references()<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', "<Cmd>CodeActionMenu<CR>", {})
 
     if client.resolved_capabilities.document_formatting then
         vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", {})
@@ -58,7 +60,7 @@ nvim_lsp_config.dartls.setup {
 nvim_lsp_config.rust_analyzer.setup({
   on_attach = rust_analyzer_on_attach,
   capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-  cmd = { "rust-analyzer", "-v", "-v", "-v", "--log-file", "rust-logs.log", "--no-log-buffering"},
+  cmd = { "rust-analyzer", "-v", "-v", "-v"},
   filetypes = { "rust" },
   root_dir = nvim_lsp_config.util.root_pattern("Cargo.toml"),
   settings = {
