@@ -14,8 +14,10 @@ return require('packer').startup(
       -- Let packer manages packer
       use("wbthomason/packer.nvim")
       use("doums/darcula")
-
-
+      use({
+            "weilbith/nvim-code-action-menu",
+            cmd = "CodeActionMenu"
+      })
       use("kyazdani42/nvim-tree.lua")
       use("kyazdani42/nvim-web-devicons")
 
