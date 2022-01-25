@@ -38,7 +38,7 @@ end
 nvim_lsp_config.clangd.setup {
     on_attach = clangd_on_attach,
     capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    cmd = {"clangd", "--background-index", "-j=4", "--log=verbose", "--compile-commands-dir=./build/"},
+    cmd = {"clangd", "--background-index", "-j=4", "--completion-style=detailed", "--compile-commands-dir=./build/", "--clang-tidy"},
 --    cmd = {"docker", "exec", "-i", "-w", "/src", "nvim-devcontainer", "clangd", "--background-index", "--clang-tidy", "--path-mappings", "/home/pip/Projects/morpheus/tank=/src"},
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 }
