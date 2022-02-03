@@ -37,6 +37,7 @@ return require('packer').startup(
           }
         })
     use("tpope/vim-fugitive")
+    use("akinsho/bufferline.nvim")
   end
 )
 

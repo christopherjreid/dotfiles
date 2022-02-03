@@ -36,5 +36,6 @@ require("plugins/nvim-tree/main")
 
 require("plugins/nvim-lspconfig/main")
 require("plugins/nvim-cmp/main")
---require("plugins/vim-fugitive/main")
+require("plugins/vim-fugitive/main")
+require("plugins/bufferline/main")
 
