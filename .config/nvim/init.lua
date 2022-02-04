@@ -38,4 +38,5 @@ require("plugins/nvim-lspconfig/main")
 require("plugins/nvim-cmp/main")
 require("plugins/vim-fugitive/main")
 require("plugins/bufferline/main")
-
+require("plugins/gitsigns/main")
+require("plugins/lualine/main")

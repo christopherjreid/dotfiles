@@ -3,19 +3,19 @@ local nvim_lsp_config = require("lspconfig")
 vim.lsp.set_log_level("debug")
 
 local common_on_attach = function(client, bufnr)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', "<Cmd>lua vim.lsp.buf.declaration()<CR>", {})
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>d', "<Cmd>lua vim.lsp.buf.definition()<CR>", {})
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>r', "<Cmd>lua vim.lsp.buf.references()<CR>", {})
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>s', '<cmd>lua vim.lsp.buf.signature_help()<CR>', {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lD', "<Cmd>lua vim.lsp.buf.declaration()<CR>", {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ld', "<Cmd>lua vim.lsp.buf.definition()<CR>", {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lr', "<Cmd>lua vim.lsp.buf.references()<CR>", {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ls', '<cmd>lua vim.lsp.buf.signature_help()<CR>', {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", {})
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lk', "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', "<Cmd>CodeActionMenu<CR>", {})
 
     if client.resolved_capabilities.document_formatting then
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", {})
-        vim.api.nvim_buf_set_keymap(bufnr, "v", "<leader>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", {})
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", {})
+        vim.api.nvim_buf_set_keymap(bufnr, "v", "<leader>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", {})
     elseif client.resolved_capabilities.document_range_formatting then
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", {})
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", {})
   end
 --  vim.api.nvim_exec([[
 --    augroup lsp

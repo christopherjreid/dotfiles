@@ -38,6 +38,8 @@ return require('packer').startup(
         })
     use("tpope/vim-fugitive")
     use("akinsho/bufferline.nvim")
+    use("lewis6991/gitsigns.nvim")
+    use("nvim-lualine/lualine.nvim")
   end
 )
 
