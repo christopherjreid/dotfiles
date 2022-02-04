@@ -10,6 +10,8 @@ local common_on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lk', "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', "<Cmd>CodeActionMenu<CR>", {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ln', "<Cmd>lua vim.diagnostic.goto_next()<CR>", {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lp', "<Cmd>lua vim.diagnostic.goto_prev()<CR>", {})
 
     if client.resolved_capabilities.document_formatting then
         vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", {})
