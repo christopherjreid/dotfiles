@@ -1,3 +1,5 @@
+vim.cmd("set mouse=a")
+
 vim.cmd("set expandtab")
 vim.cmd("set tabstop=4")
 vim.cmd("set shiftwidth=4")
@@ -17,6 +19,9 @@ vim.api.nvim_set_keymap('n', '<leader>fn',
   {})
 vim.api.nvim_set_keymap('n', '<leader>gr',
   [[<Cmd>lua require'telescope.builtin'.live_grep{}<CR>]],
+  {})
+vim.api.nvim_set_keymap('n', '<leader>tss',
+  [[<Cmd> lua require'telescope.builtin'.lsp_dynamic_workspace_symbols{}<CR>]],
   {})
 
 vim.api.nvim_set_keymap("n", "<S-Tab>", "<C-O>", {})

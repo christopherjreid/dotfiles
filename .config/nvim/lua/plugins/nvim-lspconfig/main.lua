@@ -7,9 +7,12 @@ local common_on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ld', "<Cmd>lua vim.lsp.buf.definition()<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lr', "<Cmd>lua vim.lsp.buf.references()<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ls', '<cmd>lua vim.lsp.buf.signature_help()<CR>', {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lk', "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', "<Cmd>CodeActionMenu<CR>", {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'v', '<leader>a', "<Cmd>CodeActionMenu<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ln', "<Cmd>lua vim.diagnostic.goto_next()<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lp', "<Cmd>lua vim.diagnostic.goto_prev()<CR>", {})
 
@@ -71,7 +74,7 @@ nvim_lsp_config.rust_analyzer.setup({
   },
   cmd = { "rust-analyzer", "-v", "-v", "-v"},
   filetypes = { "rust" },
-  root_dir = nvim_lsp_config.util.root_pattern("Cargo.toml"),
+--  root_dir = nvim_lsp_config.util.root_pattern("Cargo.toml"),
   settings = {
     ["rust_analyzer"] = {
         procMacro = {
@@ -80,6 +83,18 @@ nvim_lsp_config.rust_analyzer.setup({
     }
   }
 })
+
+--vim.api.nvim_command([[autocmd FileType rust setlocal makeprg=cargo %]])
+vim.api.nvim_command([[autocmd FileType rust setlocal errorformat=
+"%-G,
+%-Gerror: aborting %.%#,
+%-Gerror: Could not compile %.%#,
+%Eerror: %m,
+%Eerror[E%n]: %m,
+%Wwarning: %m,
+%Inote: %m,
+%C %#--> %f:%l:%c,
+%E  left:%m,%C right:%m %f:%l:%c,%Z" %]])
 
 nvim_lsp_config.jedi_language_server.setup({
   on_attach=common_on_attach 
