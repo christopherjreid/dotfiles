@@ -16,10 +16,10 @@ local common_on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ln', "<Cmd>lua vim.diagnostic.goto_next()<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lp', "<Cmd>lua vim.diagnostic.goto_prev()<CR>", {})
 
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.document_formatting then
         vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", {})
         vim.api.nvim_buf_set_keymap(bufnr, "v", "<leader>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", {})
-    elseif client.resolved_capabilities.document_range_formatting then
+    elseif client.server_capabilities.document_range_formatting then
         vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", {})
   end
 --  vim.api.nvim_exec([[

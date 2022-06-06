@@ -1,0 +1,10 @@
+{
+    "workbench.colorTheme": "Default Dark+",
+    "remote.containers.defaultExtensions": [
+        "llvm-vs-code-extensions.vscode-clangd",
+        "ms-vscode.cpptools-extension-pack",
+	"ms-python.python"
+    ],
+    "editor.minimap.enabled": false,
+    "window.zoomLevel": -1,
+}
