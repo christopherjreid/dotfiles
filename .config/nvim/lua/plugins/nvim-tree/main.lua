@@ -4,28 +4,7 @@ vim.cmd [[packadd nvim-tree.lua]]
 
 vim.o.termguicolors = true
 
-vim.g.nvim_tree_quit_on_open = 0
-vim.g.nvim_tree_indent_markers = 1
-vim.g.nvim_tree_git_hl = 1
-vim.g.nvim_tree_root_folder_modifier = ":~"
 vim.g.nvim_tree_allow_resize = 1
-
-vim.g.nvim_tree_icons = {
-    default = " ",
-    symlink = " ",
-    git = {
-        unstaged = "✗",
-        staged = "✓",
-        unmerged = "",
-        renamed = "➜",
-        untracked = "★"
-    },
-    folder = {
-        default = "",
-        open = "",
-        symlink = ""
-   }
-}
 
 local get_lua_cb = function(cb_name)
     return string.format(":lua require'nvim-tree'.on_keypress('%s')<CR>", cb_name)
@@ -46,10 +25,13 @@ vim.api.nvim_set_keymap(
 require("nvim-tree").setup({
     filters = {
         custom = {".git", "node_modules", ".cache"},
+        dotfiles = false
     },
-    hide_dotfiles = true,
-    auto_open = true,
-    auto_close = false,
+    actions = {
+        open_file = {
+            quit_on_open = false,
+        }
+    },
     open_on_setup = true,
     open_on_tab = false,
     update_to_buf_dir = {
@@ -60,6 +42,31 @@ require("nvim-tree").setup({
         enable = true,
         update_cwd = false,
         ignore_list = {}
+    },
+    renderer = {
+        highlight_git = true,
+        icons = {
+            glyphs = {
+                default = " ",
+                symlink = " ",
+                git = {
+                    unstaged = "✗",
+                    staged = "✓",
+                    unmerged = "",
+                    renamed = "➜",
+                    untracked = "★"
+                },
+                folder = {
+                    default = "",
+                    open = "",
+                    symlink = ""
+               }
+            }
+        },
+        indent_markers = {
+            enable = true
+        },
+        root_folder_modifier = ":~"
     },
     system_open = {
         cmd = nil,
