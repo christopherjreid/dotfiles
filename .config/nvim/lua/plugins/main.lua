@@ -29,7 +29,7 @@ return require('packer').startup(
       use("hrsh7th/cmp-buffer")
 
       use({
-          "nvim-telescope/telescope.nvim", 
+          "nvim-telescope/telescope.nvim", branch = 'master',
           requires = {
             {"nvim-lua/popup.nvim"},
             {"nvim-lua/plenary.nvim"},
@@ -37,7 +37,6 @@ return require('packer').startup(
           }
         })
     use("tpope/vim-fugitive")
-    use("akinsho/bufferline.nvim")
     use("lewis6991/gitsigns.nvim")
     use("nvim-lualine/lualine.nvim")
   end

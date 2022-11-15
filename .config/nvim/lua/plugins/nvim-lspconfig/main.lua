@@ -16,12 +16,13 @@ local common_on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ln', "<Cmd>lua vim.diagnostic.goto_next()<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lp', "<Cmd>lua vim.diagnostic.goto_prev()<CR>", {})
 
-    if client.server_capabilities.document_formatting then
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", {})
-        vim.api.nvim_buf_set_keymap(bufnr, "v", "<leader>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", {})
-    elseif client.server_capabilities.document_range_formatting then
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", {})
-  end
+    if client.server_capabilities.documentFormattingProvider then
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", {})
+        vim.api.nvim_buf_set_keymap(bufnr, "v", "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", {})
+    end
+    if client.server_capabilities.documentRangeFormattingProvider then
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", {})
+    end
 --  vim.api.nvim_exec([[
 --    augroup lsp
 --      autocmd! * <buffer>
@@ -42,7 +43,7 @@ end
 -- C++ config
 nvim_lsp_config.clangd.setup {
     on_attach = clangd_on_attach,
-    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
     cmd = {"clangd", "--background-index", "-j=4", "--completion-style=detailed", "--compile-commands-dir=./build/", "--clang-tidy"},
 --    cmd = {"docker", "exec", "-i", "-w", "/src", "nvim-devcontainer", "clangd", "--background-index", "--clang-tidy", "--path-mappings", "/home/pip/Projects/morpheus/tank=/src"},
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
@@ -65,7 +66,7 @@ nvim_lsp_config.dartls.setup {
 -- Rust config
 nvim_lsp_config.rust_analyzer.setup({
   on_attach = rust_analyzer_on_attach,
-  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
   completion = {
       addCallArgumentSnippets = false,
       postfix = {

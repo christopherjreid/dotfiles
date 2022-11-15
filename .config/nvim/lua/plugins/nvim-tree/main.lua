@@ -30,11 +30,14 @@ require("nvim-tree").setup({
     actions = {
         open_file = {
             quit_on_open = false,
+        },
+        open_file = {
+            resize_window = true,
         }
     },
     open_on_setup = true,
     open_on_tab = false,
-    update_to_buf_dir = {
+    hijack_directories = {
         enable = true,
         auto_open = true
     },
@@ -74,7 +77,6 @@ require("nvim-tree").setup({
     },
 
     view = {
-        auto_resize = true,
         width = 30,
         side = 'left',
         mappings = {
