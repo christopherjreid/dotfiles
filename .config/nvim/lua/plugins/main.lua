@@ -39,6 +39,13 @@ return require('packer').startup(
     use("tpope/vim-fugitive")
     use("lewis6991/gitsigns.nvim")
     use("nvim-lualine/lualine.nvim")
+    --use("simrat39/rust-tools.nvim")
+    use({"folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+      config = function()
+          require("trouble").setup({})
+      end
+    })
   end
 )
 

@@ -10,7 +10,7 @@ local common_on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", {})
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lk', "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lk', "<Cmd>lua vim.diagnostic.open_float()<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', "<Cmd>CodeActionMenu<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'v', '<leader>a', "<Cmd>CodeActionMenu<CR>", {})
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ln', "<Cmd>lua vim.diagnostic.goto_next()<CR>", {})
@@ -64,6 +64,15 @@ nvim_lsp_config.dartls.setup {
 }
 
 -- Rust config
+-- local rust_tools = require("rust-tools")
+-- rust_tools.setup({
+--     server = {
+--         on_attach = function(_, bufnr)
+--             vim.keymap.set("n", "<Leader>h", rust_tools.hover_actions.hover_actions, {buffer = bufnr})
+--             vim.keymap.set("n", "<Leader>a", rust_tools.code_action_group.code_action_group, {buffer = bufnr})
+--         end,
+--     },
+-- })
 nvim_lsp_config.rust_analyzer.setup({
   on_attach = rust_analyzer_on_attach,
   capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
@@ -73,7 +82,7 @@ nvim_lsp_config.rust_analyzer.setup({
           enable = false
       }
   },
-  cmd = { "rust-analyzer", "-v", "-v", "-v"},
+  cmd = { "rust-analyzer" },
   filetypes = { "rust" },
 --  root_dir = nvim_lsp_config.util.root_pattern("Cargo.toml"),
   settings = {
@@ -85,17 +94,37 @@ nvim_lsp_config.rust_analyzer.setup({
   }
 })
 
---vim.api.nvim_command([[autocmd FileType rust setlocal makeprg=cargo %]])
-vim.api.nvim_command([[autocmd FileType rust setlocal errorformat=
-"%-G,
-%-Gerror: aborting %.%#,
-%-Gerror: Could not compile %.%#,
-%Eerror: %m,
-%Eerror[E%n]: %m,
-%Wwarning: %m,
-%Inote: %m,
-%C %#--> %f:%l:%c,
-%E  left:%m,%C right:%m %f:%l:%c,%Z" %]])
+nvim_lsp_config.wgsl_analyzer.setup({
+  on_attach = common_on_attach,
+  capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  filetypes = { "wgsl" },
+  })
+
+--vim.api.nvim_command([[autocmd FileType rust setlocal makeprg=cargo\ build]])
+--    augroup lsp
+--      autocmd! * <buffer>
+--      autocmd! BufEnter,BufWritePost,InsertLeave <buffer> :lua vim.lsp.diagnostic.set_loclist{open_loclist=false}
+--    augroup END
+--vim.api.nvim_command([[autocmd FileType rust setlocal errorformat=
+--"%-G,
+--%-Gerror: aborting %.%#,
+--%-Gerror: Could not compile %.%#,
+--%Eerror: %m,
+--%Eerror[E%n]: %m,
+--%Wwarning: %m,
+--%-Z%*\s--> %f:%l:%c,
+--%Inote: %m,
+--%C %#--> %f:%l:%c,
+--%Wwarning: %m,%Z  --> %f:%l:%c
+--%E  left:%m,%C right:%m %f:%l:%c,%Z" %]])
+
+--vim.cmd(
+--"autocmd FileType rust setlocal errorformat=" ..
+--"%-G," ..
+--"%-Gerror:\ aborting\ %.%#," ..
+--"%-Gerror:\ Could\ not\ compile\ %.%#,"
+--)
+
 
 nvim_lsp_config.jedi_language_server.setup({
   on_attach=common_on_attach 

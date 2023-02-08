@@ -4,6 +4,7 @@ vim.cmd("set expandtab")
 vim.cmd("set tabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set number")
+vim.cmd("filetype on")
 
 vim.cmd("nnoremap <SPACE> <Nop>")
 vim.cmd("let mapleader=\" \"")
@@ -44,3 +45,5 @@ require("plugins/nvim-cmp/main")
 require("plugins/vim-fugitive/main")
 require("plugins/gitsigns/main")
 require("plugins/lualine/main")
+
+vim.cmd("filetype plugin on")
