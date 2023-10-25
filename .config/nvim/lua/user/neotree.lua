@@ -20,7 +20,9 @@ require("neo-tree").setup(
     },
   },
   filesystem = {
-    follow_current_file = true,
+    follow_current_file = {
+        enabled = true,
+    },
   },
   git_status = {
     window = {

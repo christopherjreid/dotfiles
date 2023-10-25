@@ -113,6 +113,10 @@ maps.n["<leader>tt"] = {
     "<cmd>lua require'telescope.builtin'.lsp_type_definitions(require('telescope.themes').get_dropdown({}))<cr>",
     desc = "Search type defs"
 }
+maps.n["<leader>tgs"] = {
+    "<cmd>lua require'telescope.builtin'.git_status(require('telescope.themes').get_dropdown({}))<cr>",
+    desc = "Git status"
+}
 
 
 set_mappings(maps)
