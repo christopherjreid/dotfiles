@@ -17,6 +17,7 @@ require("packer").startup(
     use("folke/tokyonight.nvim")
     use("doums/darcula")
     use("sainnhe/everforest")
+    use("phha/zenburn.nvim")
 
     use("folke/which-key.nvim")
     use({
@@ -77,11 +78,11 @@ require("packer").startup(
     })
 
     -- AST parsers
-    use({
-      "nvim-treesitter/nvim-treesitter",
-      run = ":TSUpdate"
-    })
-    use("p00f/nvim-ts-rainbow")
+    --use({
+    --  "nvim-treesitter/nvim-treesitter",
+    --  run = ":TSUpdate"
+    --})
+    --use("p00f/nvim-ts-rainbow")
 
     -- Git
     use("tpope/vim-fugitive")

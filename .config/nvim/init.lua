@@ -7,6 +7,7 @@ require('user.snippets')
 require('user.lsp')
 require('user.neotree')
 require('user.treesitter')
+require('user.telescope')
 require('user.gitsigns')
 require('user.aerial')
 

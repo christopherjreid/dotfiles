@@ -1,9 +1,5 @@
-local status_ok, configs = pcall(require, "nvim-treesitter.configs")
-
-if not status_ok then
-    print("Could not load treesitter")
-    return
-end
+local utils = require("user.utils")
+local status_ok, configs = utils.load_module("nvim-treesitter.configs")
 
 configs.setup({
     ensure_installed = { "bash", "c", "cmake", "cpp", "dockerfile", "lua", "make", "markdown", "python", "regex", "rust",

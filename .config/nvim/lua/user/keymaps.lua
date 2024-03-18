@@ -93,6 +93,10 @@ keymap("n", "<C-Right>", ":vertical resize -2<CR>", opts)
 -- Back to normal mode
 keymap("i", "jk", "<ESC>", opts)
 
+-- Search forward/backward for word under cursor
+maps.n["g["] = { "g#", desc = "Jump to next occurance of word under cursor" }
+maps.n["g]"] = { "g*", desc = "Jump to previous occurance of word under cursor" }
+
 -- Keep highlight on selection when indenting
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)

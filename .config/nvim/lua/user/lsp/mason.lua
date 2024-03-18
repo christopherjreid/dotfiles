@@ -1,8 +1,10 @@
 
 
 local servers = {
+  "bzl",
+  "clangd",
+  "jedi_language_server",
   "lua_ls",
-  "clangd"
 }
 
 require("mason").setup()

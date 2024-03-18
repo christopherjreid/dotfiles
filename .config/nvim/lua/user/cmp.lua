@@ -75,7 +75,7 @@ cmp.setup {
       else
         fallback()
       end
-    end, 
+    end,
     {"i", "s", }),
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -121,7 +121,7 @@ cmp.setup {
     documentation = cmp.config.window.bordered(),
   },
   experimental = {
-    ghost_text = false,
+    ghost_text = true,
     native_menu = false,
   },
 }

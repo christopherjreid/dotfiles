@@ -67,7 +67,7 @@ require("neo-tree").setup(
 vim.api.nvim_set_keymap(
     "n",
     "<leader>e",
-    ":Neotree toggle<CR>",
+    ":Neotree focus<CR>",
     {
         noremap = true,
         silent = true
