@@ -8,7 +8,7 @@ opt.conceallevel = 0
 opt.hlsearch = true
 opt.incsearch = true
 opt.ignorecase = true
-opt.mouse = "a"
+--opt.mouse = "a"
 
 opt.smartcase = true
 opt.smartindent = true

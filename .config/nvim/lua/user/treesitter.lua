@@ -1,11 +1,17 @@
 local utils = require("user.utils")
-local status_ok, configs = utils.load_module("nvim-treesitter.configs")
+
+local status, configs = utils.load_module("nvim-treesitter.configs")
+
+if not status then
+    return
+end
+
 
 configs.setup({
     ensure_installed = { "bash", "c", "cmake", "cpp", "dockerfile", "lua", "make", "markdown", "python", "regex", "rust",
         "starlark", "yaml" },
     highlight = {
-        enable = true,
+        enable = false,
         additional_vim_regex_highlighting = false,
     },
     incremental_selection = {

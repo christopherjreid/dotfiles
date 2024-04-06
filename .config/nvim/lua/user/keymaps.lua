@@ -109,9 +109,13 @@ maps.n["<leader>tf"] = {
 maps.n["<leader>tg"] = {
     "<cmd>lua require'telescope.builtin'.live_grep(require('telescope.themes').get_dropdown({}))<cr>", desc = "Grep" }
 
-maps.n["<leader>ts"] = {
+maps.n["<leader>tS"] = {
     "<cmd>lua require'telescope.builtin'.lsp_dynamic_workspace_symbols(require('telescope.themes').get_dropdown({}))<cr>",
-    desc = "Search symbols"
+    desc = "Search workspace symbols"
+}
+maps.n["<leader>ts"] = {
+    "<cmd>lua require'telescope'.extensions.aerial.aerial(require('telescope.themes').get_dropdown({}))<cr>",
+    desc = "Search local symbols"
 }
 maps.n["<leader>tt"] = {
     "<cmd>lua require'telescope.builtin'.lsp_type_definitions(require('telescope.themes').get_dropdown({}))<cr>",

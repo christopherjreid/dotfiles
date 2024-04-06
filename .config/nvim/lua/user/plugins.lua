@@ -51,6 +51,7 @@ require("packer").startup(
     use("williamboman/mason.nvim")
     use("williamboman/mason-lspconfig.nvim")
     use("neovim/nvim-lspconfig")
+    use({"nvimdev/lspsaga.nvim", after = "nvim-lspconfig", config = function() require("lspsaga").setup({}) end,})
     use("stevearc/aerial.nvim")
 
     -- File tree
@@ -78,11 +79,11 @@ require("packer").startup(
     })
 
     -- AST parsers
-    --use({
-    --  "nvim-treesitter/nvim-treesitter",
-    --  run = ":TSUpdate"
-    --})
-    --use("p00f/nvim-ts-rainbow")
+    use({
+      "nvim-treesitter/nvim-treesitter",
+      run = ":TSUpdate"
+    })
+    use("p00f/nvim-ts-rainbow")
 
     -- Git
     use("tpope/vim-fugitive")

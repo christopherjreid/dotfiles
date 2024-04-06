@@ -5,4 +5,6 @@ if not status_ok then
     return
 end
 
-aerial.setup()
+aerial.setup({
+    backends = { "lsp", "treesitter", "lsp" },
+})

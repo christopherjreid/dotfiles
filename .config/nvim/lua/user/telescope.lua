@@ -1,15 +1,15 @@
-local status_ok, telescope = pcall(require, "telescope")
+local utils = require("user.utils")
+
+local status_ok, telescope = utils.load_module("telescope")
 
 if not status_ok then
-    print("Could not load telescope")
     return
 end
 
 local actions
-status_ok, actions = pcall(require, "telescope.actions")
+status_ok, actions = utils.load_module("telescope.actions")
 
 if not status_ok then
-    print("Could not load telescope.actions")
     return
 end
 
