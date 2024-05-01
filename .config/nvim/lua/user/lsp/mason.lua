@@ -3,7 +3,7 @@
 local servers = {
   "bzl",
   "clangd",
-  "jedi_language_server",
+  "pyright",
   "lua_ls",
 }
 

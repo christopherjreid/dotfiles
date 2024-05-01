@@ -92,10 +92,15 @@ keymap("n", "<C-Right>", ":vertical resize -2<CR>", opts)
 
 -- Back to normal mode
 keymap("i", "jk", "<ESC>", opts)
+keymap("t", "jk", [[<C-\><C-n>]], opts)
 
 -- Search forward/backward for word under cursor
 maps.n["g["] = { "g#", desc = "Jump to next occurance of word under cursor" }
 maps.n["g]"] = { "g*", desc = "Jump to previous occurance of word under cursor" }
+
+-- Remap tab motions
+maps.n["[t"] = { ":tabp<CR>", desc = "Jump to previous tab" }
+maps.n["]t"] = { ":tabn<CR>", desc = "Jump to next tab" }
 
 -- Keep highlight on selection when indenting
 keymap("v", "<", "<gv", opts)

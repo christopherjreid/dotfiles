@@ -19,11 +19,12 @@ telescope.setup({
             truncate = {
             }
         },
-    },
-    mappings = {
-        n = {
-            ["s"] = actions.select_vertical,
-            ["S"] = actions.select_horizontal
-        }
+
+        mappings = {
+            n = {
+                ["s"] = actions.select_vertical,
+                ["S"] = actions.select_horizontal
+            }
+        },
     },
 })

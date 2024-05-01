@@ -88,6 +88,10 @@ M.on_attach = function(client, bufnr)
         vim.api.nvim_buf_set_keymap(bufnr, "v", "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", {})
     end
 
+    if client.name == "jedi_language_server" then
+        client.server_capabilities.codeAction = false
+    end
+
     lsp_keymaps(bufnr)
     lsp_highlight_document(client)
 end
